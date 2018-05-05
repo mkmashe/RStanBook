@@ -1,10 +1,13 @@
 library(rstan)
 
-d <- read.csv(file='input/data-salary.txt')
+d <- read.csv(file='./chap04/input/data-salary.txt')
 data <- list(N=nrow(d), X=d$X, Y=d$Y)
 
-stanmodel <- stan_model(file='model/model4-5.stan')
+# モデルファイルのコンパイルのみ実行
+stanmodel <- stan_model(file='./chap04/model/model4-5.stan')
 
+# コンパイルしたオブジェクトから
+# サンプリングのみ実行
 fit <- sampling(
   stanmodel,
   data=data,
